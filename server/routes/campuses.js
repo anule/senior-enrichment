@@ -14,7 +14,7 @@ campusRoute.get('/:id', (req, res, next) => {
   const campusId = req.params.id;
   Campus.findOne({ where: { id: campusId } })
     .then(info => info.data)
-    .then(campus => res.json(campus))
+    .then(campus => res.status(201).json(campus))
     .catch(next);
 });
 
