@@ -17,14 +17,14 @@ campusRoute.get('/:id', (req, res, next) => {
 });
 
 
-// POST methods
+// POST method
 campusRoute.post('/', (req, res, next) => {
   Campus.create(req.body)
     .then(campus => res.status(201).json(campus))
     .catch(next);
 });
 
-// PUT methods
+// PUT method
 campusRoute.put('/:id', (req, res, next) => {
   const { id } = req.params;
   const { name, image } = req.body;
@@ -40,10 +40,12 @@ campusRoute.put('/:id', (req, res, next) => {
       if (name && image) {
         campus.update({ name, image });
       }
+      return campus;
     })
-    .then(() => res.status(202).send('Change accepted'))
+    .then(campus => res.status(202).json(campus))
     .catch(next);
 });
+
 
 // DELETE method
 campusRoute.delete('/:id', (req, res, next) => {
