@@ -18,4 +18,4 @@ Campus.hasMany(Student, {
 
 Student.belongsTo(Campus, { as: 'campus' });
 
-module.exports = db;
+module.exports = { db, Student, Campus };
