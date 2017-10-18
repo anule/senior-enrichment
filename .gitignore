@@ -10,3 +10,6 @@ npm-debug.log
 
 #linter config
 .eslintrc.json
+
+#OS defaults
+.DS_Store

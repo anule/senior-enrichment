@@ -8,5 +8,8 @@ module.exports = db.define('campus', {
     unique: true,
   },
   // images can have a defaultValue that holds a static image
-  image: { type: Sequelize.STRING },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue: '/img/hqdefault.jpg',
+  },
 });

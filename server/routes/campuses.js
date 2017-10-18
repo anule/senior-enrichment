@@ -20,5 +20,10 @@ campusRoute.get('/:id', (req, res, next) => {
 
 
 // POST methods
+campusRoute.post('/', (req, res, next) => {
+  Campus.create(req.body)
+    .then(campus => res.json(campus))
+    .catch(next);
+});
 
 module.exports = campusRoute;
