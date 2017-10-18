@@ -10,8 +10,8 @@ campusRoute.get('/', (_, res, next) => {
 });
 
 campusRoute.get('/:id', (req, res, next) => {
-  const campusId = req.params.id;
-  Campus.findOne({ where: { id: campusId } })
+  const { id } = req.params;
+  Campus.findOne({ where: { id } })
     .then(campus => res.json(campus))
     .catch(next);
 });
@@ -24,9 +24,34 @@ campusRoute.post('/', (req, res, next) => {
     .catch(next);
 });
 
-//PUT methods
-campusRoute.put('/', (req, res, next) => {
+// PUT methods
+campusRoute.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { name, image } = req.body;
 
-})
+  Campus.findOne({ where: { id } })
+    .then((campus) => {
+      if (!name) {
+        campus.update({ image });
+      }
+      if (!image) {
+        campus.update({ name });
+      }
+      if (name && image) {
+        campus.update({ name, image });
+      }
+    })
+    .then(() => res.status(202).send('Change accepted'))
+    .catch(next);
+});
+
+// DELETE method
+campusRoute.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+  Campus.findOne({ where: { id } })
+    .then(() => Campus.destroy({ where: { id } }))
+    .then(() => res.status(308).send('Campus deleted').redirect('/'))
+    .catch(next);
+});
 
 module.exports = campusRoute;
