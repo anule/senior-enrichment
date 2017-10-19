@@ -6,14 +6,11 @@ const GET_CAMPUSES = 'GET_CAMPUSES';
 
 // ACTION CREATORS
 export function getCampuses(campuses) {
-  return {
-    type: GET_CAMPUSES,
-    campuses,
-  };
+  const action = { type: GET_CAMPUSES, campuses };
+  return action;
 }
 
 // THUNK CREATORS
-
 /* Retrieves all campuses from the server */
 export function fetchCampuses() {
   return function thunk(dispatch) {
@@ -27,7 +24,7 @@ export function fetchCampuses() {
 }
 
 // REDUCER
-export default campusesReducer (state = [], action) {
+export default function campusesReducer(state = [], action) {
   switch (action.type) {
     case GET_CAMPUSES:
       return action.campuses;
