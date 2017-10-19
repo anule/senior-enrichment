@@ -4,12 +4,13 @@ import store from '../store';
 import { Route, Switch } from 'react-router-dom';
 import AllCampuses from './AllCampus';
 import Navbar from './Navbar';
+import { connect } from 'react-redux';
 
 export default class Main extends Component {
-  componentDidMount() {
-    const campusesThunk = fetchCampuses();
-    store.dispatch(campusesThunk);
-  }
+  // componentDidMount() {
+  //   const campusesThunk = fetchCampuses();
+  //   store.dispatch(campusesThunk);
+  // }
 
   render() {
     return (
@@ -24,3 +25,13 @@ export default class Main extends Component {
     );
   }
 }
+
+
+// const mapState = null;
+// const mapDispatch = dispatch => ({
+//   fetchInitialData: () => {
+//     dispatch(fetchCampuses());
+//     // dispatch(fetchStudents());
+//   },
+// });
+// export default connect(mapState, mapDispatch)(Main);
