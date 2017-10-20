@@ -2,12 +2,18 @@ import React from 'react';
 import store from '../store';
 import { fetchCampuses } from '../reducers';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class AllCampus extends React.Component {
 
   constructor() {
     super();
     this.state = { loading: true }
+  }
+
+  handleClick(evt) {
+    evt.preventDefault();
+
   }
 
   componentDidMount() {
@@ -22,11 +28,16 @@ class AllCampus extends React.Component {
       return (
         <div className="showAll">
           <h2>Our Campuses</h2>
+          <Link className="add-button" to={`/campuses/add/new-campus`}>
+            <h4><b>Add a new campus</b></h4>
+          </Link>
           {
             this.props.campus.map(campus => (
               <div className="campus-card" key={campus.id}>
-                <img src={campus.image} alt="campus" />
-                <p className="campus-name">{campus.name}</p>
+                <Link className="solo-campus" to={`/campuses/${campus.id}`}>
+                  <img src={campus.image} alt="campus" />
+                  <p className="campus-name">{campus.name}</p>
+                </Link>
               </div>
             ))
           }
@@ -38,7 +49,7 @@ class AllCampus extends React.Component {
         </div>
       );
     } else {
-      return ( <h1>Loading ...</h1>)
+      return (<h1>Loading ...</h1>)
     }
   }
 }

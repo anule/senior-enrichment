@@ -10,7 +10,9 @@ campusRoute.get('/', (_, res, next) => {
 });
 
 campusRoute.get('/:id', (req, res, next) => {
-  const { id } = req.params;
+  let { id } = req.params;
+  console.log('id type', typeof id)
+  id = Number(id);
   Campus.findOne({ where: { id } })
     .then(campus => res.json(campus))
     .catch(next);

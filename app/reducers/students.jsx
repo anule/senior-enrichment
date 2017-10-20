@@ -7,22 +7,22 @@ const EDIT_STUDENT = 'EDIT_STUDENT';
 const DELETE_STUDENT = 'DELETE_STUDENT';
 
 // ACTION CREATORS
-const getStudents = students => ({
+export const getStudents = students => ({
   type: GET_STUDENTS,
   students,
 });
 
-const addStudent = student => ({
+export const addStudent = student => ({
   type: ADD_STUDENT,
   student,
 });
 
-const editStudent = student => ({
+export const editStudent = student => ({
   type: EDIT_STUDENT,
   student,
 });
 
-const deleteStudent = student => ({
+export const deleteStudent = student => ({
   type: DELETE_STUDENT,
   student,
 });

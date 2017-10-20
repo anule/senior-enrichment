@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { fetchCampuses } from '../reducers';
 import store from '../store';
 import { Route, Switch } from 'react-router-dom';
-import AllCampuses from './AllCampus';
-import Navbar from './Navbar';
 import { connect } from 'react-redux';
+import AllCampuses from './AllCampus';
+import OneCampus from './OneCampus';
+import AddCampus from './AddCampus';
+import AllStudents from './AllStudents';
+import OneStudent from './OneStudent';
+import Navbar from './Navbar';
 
 export default class Main extends Component {
   // componentDidMount() {
@@ -18,7 +22,11 @@ export default class Main extends Component {
         <Navbar />
         <main>
           <Switch>
-            <Route path="/campuses" component={AllCampuses} />
+            <Route exact path="/campuses" component={AllCampuses} />
+            <Route path="/campuses/:campusId" component={OneCampus} />
+            <Route exact path="/campuses/add/new-campus" component={AddCampus} />
+            <Route exact path="/students" component={AllStudents} />
+            <Route path="/students/:studentId" component={OneStudent} />
           </Switch>
         </main>
       </div>
